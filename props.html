@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!--형식: v-bind:props 속성 이름 = "상위 컴포넌트 데이터 이름" -->
+        <!-- props[]에 카멜을 인식하지 못함. 따라서 html에선 - 으로 해주면 인식함 -->
+        <app-header v-bind:props-data="message"></app-header>
+        <app-content v-bind:props-Num="num"></app-content>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var appHeader = {
+            template: '<h1>{{propsData}}</h1>', // data의 message -> props의 propsData와 바인딩 -> {{변수}} 이런식으로 바인딩가능 ( message == propsData == {{propsData}} )
+            props: ['propsData']
+        }
+
+        var appContent = {
+            template: '<div>{{propsNum}}</div>',
+            props: ['propsNum']
+        }
+
+        new Vue({
+            el: '#app',
+            components: {
+                'app-header' : appHeader,
+                'app-content': appContent
+            },
+            data: {
+                message:'hi',
+                num: 10
+            }
+        })
+    </script>
+</body>
+</html>
