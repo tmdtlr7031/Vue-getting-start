@@ -8,8 +8,22 @@
 </head>
 <body>
     <div id="app">
-        <p>{{num}}</p>
+        <!-- p태그에 id값 바인딩 -->
+        <p v-bind:id="uuid" v-bind:class="name">{{num}}</p>
         <p>{{doubleNum}}</p>
+
+        <!-- DOM 자체를 그리지 않음 -->
+        <div v-if="loading">
+            Loading...
+        </div>
+        <div v-else>
+            test user has been logged in
+        </div>
+
+        <!-- DOM 상에는 display:none-->
+        <div v-show="loading">
+            Loading...
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -17,7 +31,10 @@
         new Vue({
             el: '#app',
             data: {
-                num: 20,
+                num: 10,
+                uuid: 'abc1234',
+                name: 'text-blue',
+                loading: true
             },
             // data의 값에 따라 바뀌는 값을 정의할 때 사용
             computed: {
@@ -25,7 +42,6 @@
                     return this.num * 2;
                 }
             }
-
         });
     </script>
 </body>
