@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{num}}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        /*
+            computed가 watch보다 캐싱 같이 내부적 튜닝이 되어있기 때문에 computed로 해결할 수 있는건 computed 써라
+            https://vuejs.org/guide/essentials/computed.html
+        */
+        new Vue({
+            el: '#app',
+            data: {
+                num: 10
+            },
+            // 단순한 값에 대한 계산 (validation 이라든..)
+            computed: {
+                doubleNum: function() {
+                    return this.num * 2;
+                }
+            },
+            // 매번 실행되는게 부담스러운 로직들 (서버요청 등)
+            watch: {
+                num: function(newValue, oldValue) {
+                    this.fetchUserByNumber(newValue);
+                }
+            },
+            methods: {
+                fetchUserByNumber: function(num) {
+                    console.log(num);
+                    // axios.get(num) // 서버요청
+                }
+            }
+        });
+    </script>
+</body>
+</html>
