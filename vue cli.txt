@@ -19,3 +19,7 @@ vue cli 프로젝트 생성
 
 vue/multi-word-component-names 에러 발생
 - package.json 파일의 "eslintConfig" 의 "rules" 안에 "vue/multi-word-component-names": "off" 옵션 추가
+
+해당 프로젝트에 axios 사용하기
+    - 프로젝트 경로로 이동 > npm i axios
+    - 설치 후 vue 파일에서 import axios from 'axios';
